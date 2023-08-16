@@ -1,5 +1,6 @@
-\*\*\* Task
-:— SCHEMA:
+## Task
+
+SCHEMA:
 
 CREATE TABLE users (id INTEGER, name STRING);
 CREATE TABLE groups (id INTEGER, name STRING);
@@ -19,10 +20,8 @@ date; amount;
 Идеальный вариант: Решить одним запросом. Приемлемый: Несколькими.
 Синтаксис: предпочитетелен PostgreSQL >= 11. Можно другой
 
----
-
-\*\*\* Solution
-
+***Solution***
+```
 SELECT DATE_TRUNC('day', p.created) AS date, AVG(p.amount) AS amount
 FROM payments p
 JOIN users u ON p.uid = u.id
@@ -32,8 +31,10 @@ WHERE g.name IN ('member', 'premium_member')
 AND p.created >= NOW() - INTERVAL '8 days'
 GROUP BY date
 ORDER BY date DESC;
+```
+---------
 
-\*\*\* Task 2
+## Task 2
 
 Реализовать на базе (на выбор) nodejs/nextjs/nest простую демонстрационную реализацию
 oAuth сервера.
@@ -52,12 +53,12 @@ oAuth сервера.
 
 Критерии приемки соискатель определяет самостоятельно.
 
-\*\*\* Solution
+***Solution***
 
 Для реализации выбираю nest js + typescript
 
 Во внутренней памяти зарегистрировано 2 пользователя
-
+```
      {
       userId: 1,
       username: 'admin',
@@ -68,7 +69,7 @@ oAuth сервера.
       username: 'manager',
       password: 'manager',
     }
-
+```
 Для удобства проверки, приложение открывается сразу через сваггер
 Для запуска приложения нужно перейти в папку auth-task , написать в терминале npm i, потом написать npm start, приложение запустится на порту 3000
 
